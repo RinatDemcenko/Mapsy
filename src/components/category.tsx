@@ -5,15 +5,15 @@ import POI, { type POI as POIType } from "./poi";
 const getCategoryGradient = (categoryName: string) => {
   switch (categoryName) {
     case "supermarket":
-      return "from-[#1447e6] to-[#0d3cc7]"; 
+      return "from-[#1447e6] to-[#0d3cc7]";
     case "pharmacy":
-      return "from-[#00d492] to-[#00a673]"; 
+      return "from-[#00d492] to-[#00a673]";
     case "restaurant":
-      return "from-[#ec5949] to-[#d44439]"; 
+      return "from-[#ec5949] to-[#d44439]";
     case "fastfood":
-      return "from-[#ff8904] to-[#e67300]"; 
+      return "from-[#ff8904] to-[#e67300]";
     case "hotel":
-      return "from-[#00d3f2] to-[#00b8d4]"; 
+      return "from-[#00d3f2] to-[#00b8d4]";
     default:
       return "from-gray-500 to-gray-600";
   }
@@ -74,7 +74,7 @@ export default function Category({
   featureCollection: FeatureCollection;
   categoryName: string;
 }) {
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
   const { features } = featureCollection;
 
   if (!features || features.length === 0) {

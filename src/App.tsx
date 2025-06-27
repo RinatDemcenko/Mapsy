@@ -77,21 +77,26 @@ function App() {
             Waiting for response
           </div>
         ) : (
-          Object.keys(apiResponse.POIbyCategory).map((category) => {
-            const categoryKey =
-              category as keyof typeof apiResponse.POIbyCategory;
-            const featureCollection = {
-              type: "FeatureCollection" as const,
-              features: apiResponse.POIbyCategory[categoryKey],
-            };
-            return (
-              <Category
-                key={category}
-                featureCollection={featureCollection}
-                categoryName={category}
-              />
-            );
-          })
+          <>
+            <div className="bg-orange-300/40 text-center text-orange-900 text-sm px-4 py-3 mt-8 rounded-lg">
+              💡 Click on the arrow to expand category
+            </div>
+            {Object.keys(apiResponse.POIbyCategory).map((category) => {
+              const categoryKey =
+                category as keyof typeof apiResponse.POIbyCategory;
+              const featureCollection = {
+                type: "FeatureCollection" as const,
+                features: apiResponse.POIbyCategory[categoryKey],
+              };
+              return (
+                <Category
+                  key={category}
+                  featureCollection={featureCollection}
+                  categoryName={category}
+                />
+              );
+            })}
+          </>
         )}
       </div>
       <Footer />
