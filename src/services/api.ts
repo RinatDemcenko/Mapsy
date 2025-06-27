@@ -1,6 +1,6 @@
 const apiUrl = window.location.href.includes("localhost")
   ? "http://localhost:3000"
-  : "https://mapsy-theta.vercel.app";
+  : "https://mapsy-be.vercel.app";
 
 
 export async function getNearbyPlaces(lat: number, lon: number) {
