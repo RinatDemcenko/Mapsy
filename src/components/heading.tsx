@@ -79,7 +79,7 @@ export default function Heading({
           {apiResponse && showMapbox && (
             <div className="mt-4 bg-white rounded-lg p-3 sm:p-4 shadow-sm border border-gray-200">
               <h3 className="text-xs sm:text-sm font-semibold text-gray-700 mb-3">
-                Click on a point to open it in Google Maps
+                Click on a point to open it on Google Maps
               </h3>
               <div className="grid grid-cols-2 gap-2">
                 {categoryColors.map((category) => (
