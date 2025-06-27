@@ -261,7 +261,7 @@ export default function POI({
       {/* Details modal */}
       {showModal && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 transition-opacity duration-200"
+          className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50 transition-opacity duration-200"
           onClick={() => setShowModal(false)}
         >
           <div
@@ -365,48 +365,3 @@ export default function POI({
     </>
   );
 }
-
-/*
-poi data example:
-type	"Feature"
-properties	
-name	"Продукти"
-country	"Ukraine"
-country_code	"ua"
-state	"Cherkasy Oblast"
-city	"Ostrivets"
-municipality	"Бабанська селищна громада"
-postcode	"20363"
-district	"Uman Raion"
-street	"вулиця Дружби"
-iso3166_2	"UA-71"
-lon	30.5194487
-lat	48.5969951
-formatted	"Продукти, вулиця Дружби, Uman Raion, Ostrivets, 20363, Ukraine"
-address_line1	"Продукти"
-address_line2	"вулиця Дружби, Uman Raion, Ostrivets, 20363, Ukraine"
-categories	
-0	"commercial"
-1	"commercial.supermarket"
-2	"supermarket"
-details	
-0	"details"
-datasource	
-sourcename	"openstreetmap"
-attribution	"© OpenStreetMap contributors"
-license	"Open Database License"
-url	"https://www.openstreetmap.org/copyright"
-raw	
-name	"Продукти"
-shop	"general"
-osm_id	11035125505
-name:uk	"Продукти"
-osm_type	"n"
-name_international	
-uk	"Продукти"
-commercial	
-type	"general"
-distance	2770
-place_id	"5121730a97fa843e40596ebdde556a4c4840f00103f90101a7be9102000000920310d09fd180d0bed0b4d183d0bad182d0b8"
-geometry	{ type: "Point", coordinates: (2)[…] }
-*/

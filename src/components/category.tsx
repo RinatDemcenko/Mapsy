@@ -5,21 +5,21 @@ import POI, { type POI as POIType } from "./poi";
 const getCategoryGradient = (categoryName: string) => {
   switch (categoryName) {
     case "supermarket":
-      return "from-[#1447e6] to-[#0d3cc7]"; // синий как на карте
+      return "from-[#1447e6] to-[#0d3cc7]"; 
     case "pharmacy":
-      return "from-[#00d492] to-[#00a673]"; // зеленый как на карте
+      return "from-[#00d492] to-[#00a673]"; 
     case "restaurant":
-      return "from-[#ec5949] to-[#d44439]"; // мягкий красный
+      return "from-[#ec5949] to-[#d44439]"; 
     case "fastfood":
-      return "from-[#ff8904] to-[#e67300]"; // оранжевый как на карте
+      return "from-[#ff8904] to-[#e67300]"; 
     case "hotel":
-      return "from-[#00d3f2] to-[#00b8d4]"; // голубой как на карте
+      return "from-[#00d3f2] to-[#00b8d4]"; 
     default:
       return "from-gray-500 to-gray-600";
   }
 };
 
-// Функция для получения цветов категории для POI
+// getting colors for category
 export const getCategoryColors = (categoryName: string) => {
   switch (categoryName) {
     case "supermarket":
@@ -114,9 +114,6 @@ export default function Category({
             <button
               onClick={() => setIsExpanded(!isExpanded)}
               className="bg-white/20 hover:bg-white/30 backdrop-blur-sm p-3 rounded-xl text-white transition-all duration-300 transform hover:scale-105 active:scale-95"
-              aria-label={
-                isExpanded ? "Свернуть категорию" : "Развернуть категорию"
-              }
             >
               <svg
                 className={`w-6 h-6 transform transition-transform duration-300 ${
@@ -138,7 +135,7 @@ export default function Category({
         </div>
       </div>
 
-      {/* POI Grid - Collapsible with Animation */}
+      {/* POI Grid*/}
       <div
         className={`overflow-hidden transition-all duration-500 ease-in-out ${
           isExpanded
@@ -146,7 +143,7 @@ export default function Category({
             : "max-h-0 opacity-0 transform -translate-y-4"
         }`}
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-4 justify-items-center">
           {features.map((feature, index) => (
             <div
               key={feature.properties?.place_id || index}
