@@ -42,6 +42,7 @@ function App() {
           const response = await getNearbyPlaces(latitude, longitude);
           // display poi data
           setApiResponse(response);
+          console.log(response);
           // clear any previous errors
           setError(null);
           // stop loading
