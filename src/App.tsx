@@ -72,7 +72,7 @@ function App() {
       <Heading apiResponse={apiResponse} isLoading={isLoading} error={error} />
 
       <div className="flex flex-col items-center justify-center">
-        {apiResponse == null ? (
+        {apiResponse?.POIbyCategory == null ? (
           <div className="text-center text-2xl font-bold h-64 flex items-center justify-center">
             Waiting for response
           </div>
