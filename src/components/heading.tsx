@@ -34,7 +34,7 @@ export default function Heading({
     if (isLoading) return "Getting your location...";
     if (error) return "Failed to get your location";
     if (apiResponse)
-      return `${totalPOI} Points of interest found. Scroll down to see more!`;
+      return `${totalPOI} Points of interest found. Scroll down to see more info`;
     return initialMessage;
   }, [isLoading, error, apiResponse, totalPOI, initialMessage]);
 
