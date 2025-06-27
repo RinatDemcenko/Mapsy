@@ -1,6 +1,6 @@
 const apiUrl = window.location.href.includes("localhost")
   ? "http://localhost:3000"
-  : "https://mapsy-be.vercel.app";
+  : "https://quixotic-elise-rinatdemcenko-dfa4cae9.koyeb.app";
 
 
 export async function getNearbyPlaces(lat: number, lon: number) {
