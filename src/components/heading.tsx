@@ -33,7 +33,8 @@ export default function Heading({
   const message = useMemo(() => {
     if (isLoading) return "Getting your location...";
     if (error) return "Failed to get your location";
-    if (apiResponse) return `${totalPOI} Points of interest found`;
+    if (apiResponse)
+      return `${totalPOI} Points of interest found. Scroll down to see more!`;
     return initialMessage;
   }, [isLoading, error, apiResponse, totalPOI, initialMessage]);
 
