@@ -1,9 +1,10 @@
 @import "tailwindcss";
 
-#root{
+@theme {
+  --color-orange-300: #f7c0ad;
+}
+
+#root {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
 }

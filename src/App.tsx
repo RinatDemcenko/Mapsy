@@ -1,17 +1,99 @@
 import "./index.css";
+import { useState, useEffect } from "react";
+import Heading from "./components/heading";
+import { getNearbyPlaces } from "./services/api";
+import type { Feature } from "geojson";
+import Category from "./components/category";
+import Footer from "./components/footer";
+
+export interface APIResponse {
+  forCoordinates: number[];
+  requestedBy: string;
+  POIbyCategory: {
+    supermarket: Feature[];
+    pharmacy: Feature[];
+    restaurant: Feature[];
+    fastfood: Feature[];
+    hotel: Feature[];
+  };
+}
 
 function App() {
+  const [apiResponse, setApiResponse] = useState<APIResponse | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [locationRequested, setLocationRequested] = useState(false);
+
+  // get user coordinates
+  const getLocation = () => {
+    if (!navigator.geolocation) {
+      setError("Geolocation is not supported");
+      return;
+    }
+
+    setIsLoading(true);
+    setError(null);
+
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        try {
+          const { latitude, longitude } = position.coords;
+          // get info from backend
+          const response = await getNearbyPlaces(latitude, longitude);
+          // display poi data
+          setApiResponse(response);
+          // clear any previous errors
+          setError(null);
+          // stop loading
+          setIsLoading(false);
+        } catch {
+          setError("Failed to fetch nearby places");
+          setIsLoading(false);
+        }
+      },
+      () => {
+        setError("Failed to get location");
+        setIsLoading(false);
+      }
+    );
+  };
+
+  // request coordinates when component is rendered first time
+  useEffect(() => {
+    if (!locationRequested) {
+      setLocationRequested(true);
+      getLocation();
+    }
+  }, [locationRequested]);
+
   return (
     <>
-      <div className="text-center text-6xl font-bold mb-8 text-amber-200">
-        <h1>Mapsy</h1>
+      <Heading apiResponse={apiResponse} isLoading={isLoading} error={error} />
+
+      <div className="flex flex-col items-center justify-center">
+        {apiResponse == null ? (
+          <div className="text-center text-2xl font-bold h-64 flex items-center justify-center">
+            Waiting for response
+          </div>
+        ) : (
+          Object.keys(apiResponse.POIbyCategory).map((category) => {
+            const categoryKey =
+              category as keyof typeof apiResponse.POIbyCategory;
+            const featureCollection = {
+              type: "FeatureCollection" as const,
+              features: apiResponse.POIbyCategory[categoryKey],
+            };
+            return (
+              <Category
+                key={category}
+                featureCollection={featureCollection}
+                categoryName={category}
+              />
+            );
+          })
+        )}
       </div>
-      <div className="text-center text-lg">
-        <p>
-          This is a page where Mapsy, a non-commercial project for searching
-          points of interest near you will be available in the future.
-        </p>
-      </div>
+      <Footer />
     </>
   );
 }
