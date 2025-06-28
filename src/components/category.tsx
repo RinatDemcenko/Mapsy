@@ -6,6 +6,8 @@ const getCategoryGradient = (categoryName: string) => {
   switch (categoryName) {
     case "supermarket":
       return "from-[#1447e6] to-[#0d3cc7]";
+    case "marketplace":
+      return "from-[#f48fb1] to-[#f16c95]";
     case "pharmacy":
       return "from-[#00d492] to-[#00a673]";
     case "restaurant":
@@ -28,6 +30,13 @@ export const getCategoryColors = (categoryName: string) => {
         secondary: "#0d3cc7",
         light: "#e3f2fd",
         text: "#1447e6",
+      };
+    case "marketplace":
+      return {
+        primary: "#f48fb1",
+        secondary: "#e91e63",
+        light: "#fce4ec",
+        text: "#c2185b",
       };
     case "pharmacy":
       return {

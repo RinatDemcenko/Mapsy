@@ -82,6 +82,8 @@ export default function MapboxMap({
               "case",
               ["in", "supermarket", ["get", "categories"]],
               "#1447e6",
+              ["in", "marketplace", ["get", "categories"]],
+              "#f48fb1",
               ["in", "pharmacy", ["get", "categories"]],
               "#00d492",
               ["in", "restaurant", ["get", "categories"]],
@@ -107,6 +109,7 @@ const convertToGeoJSON = (apiResponse: APIResponse): GeoJSON => {
   // combine all categories
   const allFeatures: Feature[] = [
     ...apiResponse.POIbyCategory.supermarket,
+    ...apiResponse.POIbyCategory.marketplace,
     ...apiResponse.POIbyCategory.pharmacy,
     ...apiResponse.POIbyCategory.restaurant,
     ...apiResponse.POIbyCategory.fastfood,

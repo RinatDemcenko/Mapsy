@@ -11,6 +11,7 @@ export interface APIResponse {
   requestedBy: string;
   POIbyCategory: {
     supermarket: Feature[];
+    marketplace: Feature[];
     pharmacy: Feature[];
     restaurant: Feature[];
     fastfood: Feature[];
@@ -38,6 +39,10 @@ function App() {
       async (position) => {
         try {
           const { latitude, longitude } = position.coords;
+          // const { testlat, testlong } = {
+          //   testlat: 48.71081,
+          //   testlong: 21.260192,
+          // };
           // get info from backend
           const response = await getNearbyPlaces(latitude, longitude);
           // display poi data
@@ -78,7 +83,7 @@ function App() {
           </div>
         ) : (
           <>
-            <div className="bg-orange-300/40 text-center text-orange-900 text-sm px-4 py-3 mt-8 rounded-lg">
+            <div className="bg-orange-300/40 w-full max-w-[250px] text-center text-orange-900 text-sm px-4 py-3 mt-8 rounded-lg">
               💡 Click on the arrow on the right to expand/collapse the category
             </div>
             {Object.keys(apiResponse.POIbyCategory).map((category) => {

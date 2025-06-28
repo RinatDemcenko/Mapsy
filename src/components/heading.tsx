@@ -34,12 +34,13 @@ export default function Heading({
     if (isLoading) return "Getting your location...";
     if (error) return "Failed to get your location";
     if (apiResponse)
-      return `${totalPOI} Points of interest found. Scroll down to see more info`;
+      return `${totalPOI} Points of interest found.`;
     return initialMessage;
   }, [isLoading, error, apiResponse, totalPOI, initialMessage]);
 
   const categoryColors = [
     { name: "Supermarket", color: "#1447e6" },
+    { name: "Marketplace", color: "#f48fb1" },
     { name: "Pharmacy", color: "#00d492" },
     { name: "Restaurant", color: "#ec5949" },
     { name: "Fast Food", color: "#ff8904" },
@@ -57,9 +58,11 @@ export default function Heading({
       {/* heading */}
       <div className="flex-1 flex flex-col justify-center items-center px-6 lg:px-16 lg:py-12">
         <div className="max-w-lg w-full">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-orange-300 mb-4">
-            {message}
-          </h2>
+          <div className="flex items-center gap-3 mb-4">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-orange-300">
+              {message}
+            </h2>
+          </div>
           <div className="bg-gray-200 rounded-lg p-3 sm:p-4">
             <p className="text-gray-600 text-sm sm:text-base lg:text-base leading-relaxed">
               {isLoading
@@ -75,7 +78,6 @@ export default function Heading({
               </button>
             )}
           </div>
-
           {/* Color legend - only show when mapbox is active */}
           {apiResponse && showMapbox && (
             <div className="mt-4 bg-white rounded-lg p-3 sm:p-4 shadow-sm border border-gray-200">
@@ -99,7 +101,26 @@ export default function Heading({
           )}
         </div>
       </div>
-
+      {/* scroll down */}
+      {apiResponse && (
+        <div className="flex flex-col items-center animate-bounce absolute bottom-145 lg:bottom-10 left-1/2 -translate-x-1/2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 text-orange-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M19 14l-7 7m0 0l-7-7m7 7V3"
+            />
+          </svg>
+          <span className="text-xs text-orange-400 font-medium">Scroll</span>
+        </div>
+      )}
       {/* map */}
       <div className="flex-1 flex items-center justify-center px-4 lg:p-12">
         <div className="w-full max-w-md sm:max-w-lg lg:max-w-none lg:w-[85%] h-64 sm:h-50 lg:h-[65%] lg:min-w-[500px] lg:min-h-[300px] bg-white rounded-xl lg:rounded-2xl shadow-2xl overflow-hidden border border-gray-200">
